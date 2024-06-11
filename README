@@ -1,0 +1,35 @@
+
+FOR IMPLEMENTATION I USED LAB4- PCOM
+--------------------------------------------------------------------------------------------------------------
+
+This code implements a simple IPv4 router using a Trie data structure for fast routing table lookups. 
+Below are the main components and functionalities:
+
+Trie Data Structure:
+
+The implementation of the Trie data structure is pretty interesting. 
+It's used to efficiently store and search for routing table entries based on IP prefixes. 
+Each node in the Trie represents a bit of the IP address, and depending on whether that bit is 0 or 1, 
+it leads to the next node down the path. This allows for fast lookups of the best matching route for a 
+given destination IP address.
+
+ICMP Echo Reply:
+
+This part handles responding to ICMP echo requests, commonly known as pings. 
+When the router receives such a request, it needs to craft a response and send it back.
+ The code does this by swapping the source and destination MAC and IP addresses in the packet headers and 
+ adjusting the TTL (time to live) before sending the response packet back out.
+
+Packet Forwarding:
+
+Figuring out where to send incoming packets and actually forwarding them is quite involved.
+ The router needs to find the best route for the packet's destination IP address, decrement the TTL, 
+ update the checksum, and then send it out on the appropriate interface. This involves a series of checks 
+ and calculations to ensure the packet is properly handled and routed to its destination.
+
+Error Handling:
+
+Throughout the code, you'll notice the use of the DIE macro for error handling. 
+This ensures that if something goes wrong, like failing to allocate memory or encountering a critical 
+error, the program exits gracefully with an error message. Handling errors properly is crucial for the 
+reliability and stability of the router.
